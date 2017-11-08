@@ -13,7 +13,7 @@ class ItemAjaxController extends Controller
 
     public function index(Request $request)
     {
-        $items = Item::orderBy('id', 'DESC')->paginate(5);
+        $items = Item::orderBy('id', 'DESC')->paginate(20);
         return response()->json($items);
     }
     
@@ -37,9 +37,10 @@ class ItemAjaxController extends Controller
 
     public function search()
     {
-        var_dump($_POST);
+        // var_dump($_POST);
+        // echo "ASO";
         $search = $_POST['search'];
-        $items = Item::where('title','like','%'.$search.'%')->orderBy('id', 'DESC')->paginate(5);
+        $items = Item::where('title','like','%'.$search.'%')->orderBy('id', 'DESC')->paginate(25);
         return response()->json($items);
     }
 

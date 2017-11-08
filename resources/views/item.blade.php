@@ -38,7 +38,7 @@
 		                <div class="form-field">
 		                    <input type="text" name="search" class="search_keyword" id="search_keyword_id"
 		                           placeholder="Search....." required/>
-		                    <button type="submit" class="search_button" onclick="submitdata()">Search</button>
+		                    <button type="submit" class="search_button" ">Search</button>
 		                    <div id="result">
 
 		                    </div>

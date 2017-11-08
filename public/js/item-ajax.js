@@ -12,20 +12,20 @@ function manageData() {
         url: url,
         data: {page:page}
     }).done(function(data){
-    	total_page = data.last_page;
-    	current_page = data.current_page;
-    	$('#pagination').twbsPagination({
-	        totalPages: total_page,
-	        visiblePages: current_page,
-	        onPageClick: function (event, pageL) {
-	        	page = pageL;
-                if(is_ajax_fire != 0){
-	        	  getPageData();
-                }
-	        }
-	    });
+    	// total_page = data.last_page;
+    	// current_page = data.current_page;
+    	// $('#pagination').twbsPagination({
+	    //     totalPages: total_page,
+	    //     visiblePages: current_page,
+	    //     onPageClick: function (event, pageL) {
+	    //     	page = pageL;
+     //            if(is_ajax_fire != 0){
+	    //     	  getPageData();
+     //            }
+	    //     }
+	    // });
     	manageRow(data.data);
-        is_ajax_fire = 1;
+        // is_ajax_fire = 1;s
     });
 }
 
@@ -134,27 +134,30 @@ $(".crud-submit-edit").click(function(e){
 
 
 
-$(".search_keyword").keyup(function (e) {
+$(".search_button").click(function (e) {
+    // alert('aso');
     e.preventDefault();
     var form_action = $("#search").find("form").attr("action");
-    console.log(form_action); 
-    var search = $(this).val();
-    if (search != '') {
+    // console.log(form_action); 
+    var search = $('.search_keyword').val();
+    // console.log(search);
+    if (search != 'undefined') {
         $.ajax({
             type: "post",
             url: form_action,
             data: {search:search},
-            dataType:"json",
-            success: function(data, textStatus, jqXHR)
-            {   
-                // jQuery('#ctr_display').html(data);
-                // manageData();
-                alert("success");
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert("something wrong。");
-            }
+            dataType:"json"
+            // success: function(data, textStatus, jqXHR)
+            // {  
+            //     console.log(data);
+            //    manageRow(data);
+            // },
+            // error: function (jqXHR, textStatus, errorThrown)
+            // {
+            //     alert("something wrong。");
+            // }
+        }).done(function(data){
+            manageRow(data.data);
         });
     }
 });
